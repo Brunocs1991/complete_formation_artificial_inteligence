@@ -39,3 +39,5 @@ y = array([2, 4, 6, 8, 10])
 lr = LinearRegression(x, y)
 prevision = lr.predict(6)
 print(f"Prevision: {prevision}")
+
+# %%
