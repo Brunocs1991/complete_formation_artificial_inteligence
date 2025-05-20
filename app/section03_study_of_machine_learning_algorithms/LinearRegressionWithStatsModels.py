@@ -47,3 +47,35 @@ plt.tight_layout()
 plt.show()
 
 # %%
+# AIC:	156.6 | BIC:	162.5
+# model = sm.ols(formula='mpg ~ wt + disp + hp', data=base)
+
+# AIC:	165.1 | BIC:	169.5
+# model = sm.ols(formula='mpg ~ disp + cyl', data=base)
+
+# AIC:	179.1 | BIC:	183.5
+model = sm.ols(formula='mpg ~ drat + vs', data=base)
+model = model.fit()
+model.summary()
+
+# %%
+residuals = model.resid
+plt.hist(residuals, bins=20)
+plt.xlabel('Residuals')
+plt.ylabel('Frequency')
+plt.title('Residuals Histogram')
+
+# %%
+stats.probplot(residuals, dist="norm", plot=plt)
+plt.title('Normal Q-Q plot of Residuals')
+plt.show()
+
+# %%
+
+# h0: residuals are normally distributed
+# p <= 0.05: reject the null hypothesis (not normally distributed)
+# p > 0.05: fail to reject the null hypothesis (normally distributed)
+stat, pval = stats.shapiro(residuals)
+print(f'Shapiro-Wilk test statistic: {stat:.3f}, p-value: {pval:.3f}')
+
+# %%
