@@ -45,6 +45,7 @@ print(f'F1 Score: {f1}')
 
 # %%
 # visualize confusion matrix
+conf_matrix = confusion_matrix(y, y_pred)
 plt.figure(figsize=(8, 6))
 sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues',
             xticklabels=np.unique(y), yticklabels=np.unique(y))
